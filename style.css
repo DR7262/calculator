@@ -13,38 +13,56 @@ div {
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: flex-start;
-    align-self: stretch;
-    min-height: 500px;
-}
-
-.main > * {
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 0.5em auto;
+    min-height: 100vh;
 }
 
 #calculator {
-    width: 30em;
-    align-self: stretch;
     border-radius: 12px;
+    padding: 14px;
+    align-content: center;
 }
 
-#calculator > * {
-    margin: 14px auto;
+#calculator > * ,
+#buttons > *{
+    margin: 0 auto;
     box-sizing: border-box;
-    padding: 2px;
+    padding: 0px;
     border-radius: 12px;
 }
 
 #screen {
-    width: 28em;
-    height: 8em;
+    height: 7em;
     flex: 1;
+    padding: 0;
+    box-sizing: border-box;
+    margin-bottom: 14px;
+}
+
+#clearBtn {
+    width: 12.6em;
+    box-sizing: border-box;
+    grid-column: span 2;
+}
+
+#equalsBtn {
+    width: 12.6em;
+    box-sizing: border-box;
+    grid-column: span 2;
 }
 
 #buttons {
-    width: 28em;
-    height: 22em;
-    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    border: none;
 }
+
+button {
+    font-weight: bold;
+    border: 2px solid black;
+    height: 4em;
+    width: 6em;
+    padding: 0;
+    margin: 0 auto;
+}
+
