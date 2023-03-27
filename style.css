@@ -3,7 +3,7 @@ html {
 }
 
 div {
-    border: 2px solid black;
+    border: 2px solid #999;
 }
 
 .main {
@@ -20,6 +20,12 @@ div {
     border-radius: 12px;
     padding: 14px;
     align-content: center;
+    outline: none;
+    color: #fff;
+    background-color: grey;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 9px #999;
 }
 
 #calculator > * ,
@@ -36,6 +42,9 @@ div {
     padding: 0;
     box-sizing: border-box;
     margin-bottom: 14px;
+    border-bottom: 1px solid #999;
+    border-top: 4px solid #999;
+    background-color: rgb(194, 242, 253);
 }
 
 #clearBtn {
@@ -59,10 +68,16 @@ div {
 
 button {
     font-weight: bold;
-    border: 2px solid black;
     height: 4em;
     width: 6em;
     padding: 0;
     margin: 0 auto;
+    font-size: .9em;
+    outline: none;
+    color: black;
+    background-color: antiquewhite;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px #999;
 }
 
