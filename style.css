@@ -45,6 +45,29 @@ div {
     border-bottom: 1px solid #999;
     border-top: 4px solid #999;
     background-color: rgb(194, 242, 253);
+    font-size: large;
+    flex-direction: column;
+}
+
+.Display {
+    display: flex;
+    border: none;
+    outline: none;
+    padding: 10px;
+    align-items: center;
+    justify-content: flex-end;
+    color: black;
+}
+
+.current.Display {
+    box-sizing: border-box;
+    height: 60%;
+    font-size: 2em;
+}
+
+.past.Display {
+    box-sizing: border-box;
+    height: 40%;
 }
 
 #clearBtn {
@@ -79,5 +102,11 @@ button {
     border: none;
     border-radius: 15px;
     box-shadow: 0 6px #999;
+}
+
+button:active {
+    background-color: rgb(251, 218, 174);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
 
