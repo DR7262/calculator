@@ -41,11 +41,18 @@
 <script>
     let currentDisplay = document.querySelector('.current.Display')
 
+    var isNumber = function isNumber(value) {
+            return typeof value === 'number' && isFinite(value);
+        }
+
+
     window.addEventListener("keydown", function(e) {
             if (e.keyCode >= 48 && e.keyCode <= 57) {
-                currentDisplay.append(e.key);
-                const btn = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-                btn.classList.add('active');
+                if (isNumber(parseInt(e.key))){
+                    currentDisplay.append(e.key);
+                    const btn = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+                    btn.classList.add('active');
+                }
             }
         });
     window.addEventListener("keyup", function(e) {
