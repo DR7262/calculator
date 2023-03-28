@@ -26,6 +26,7 @@ div {
     border-radius: 15px;
     border: none;
     box-shadow: 0 9px #999;
+    width: 23.7em;
 }
 
 #calculator > * ,
@@ -37,7 +38,7 @@ div {
 }
 
 #screen {
-    height: 7em;
+    min-height: 7em;
     flex: 1;
     padding: 0;
     box-sizing: border-box;
@@ -46,17 +47,21 @@ div {
     border-top: 4px solid #999;
     background-color: rgb(194, 242, 253);
     font-size: large;
-    flex-direction: column;
+    inline-size: auto;
+    flex-grow: 0;
 }
 
 .Display {
-    display: flex;
+    display: block;
     border: none;
     outline: none;
     padding: 10px;
     align-items: center;
     justify-content: flex-end;
     color: black;
+    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .current.Display {
@@ -90,6 +95,7 @@ div {
 }
 
 button {
+    cursor: pointer;
     font-weight: bold;
     height: 4em;
     width: 6em;
@@ -104,8 +110,13 @@ button {
     box-shadow: 0 6px #999;
 }
 
-button:active {
-    background-color: rgb(251, 218, 174);
+button:hover {
+    background-color: rgb(249, 225, 193);
+}
+
+button:active,
+.active {
+    background-color: rgb(254, 217, 168);
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
