@@ -66,13 +66,13 @@ div {
 
 .current.Display {
     box-sizing: border-box;
-    height: 60%;
+    min-height: 68.8px;
     font-size: 2em;
 }
 
 .past.Display {
+    min-height: 48.8px;
     box-sizing: border-box;
-    height: 40%;
 }
 
 #clearBtn {
