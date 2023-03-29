@@ -16,50 +16,56 @@
                 <div class = 'current Display'>1</div>
             </div>
             <div id = 'buttons'>
-                <button class = 'key' data-key = '' id = "clearBtn">Clear</button>
-                <button class = 'key' data-key = '' id = "backspaceBtn">Del</button>
-                <button class = 'key' data-key = ''>÷</button>
-                <button class = 'key' data-key = '55'>7</button>
-                <button class = 'key' data-key = '56'>8</button>
-                <button class = 'key' data-key = '57'>9</button>
-                <button class = 'key' data-key = ''>×</button>
-                <button class = 'key' data-key = '54'>6</button>
-                <button class = 'key' data-key = '53'>5</button>
-                <button class = 'key' data-key = '52'>4</button>
-                <button class = 'key' data-key = ''>-</button>
-                <button class = 'key' data-key = '51'>3</button>
-                <button class = 'key' data-key = '50'>2</button>
-                <button class = 'key' data-key = '49'>1</button>
-                <button class = 'key' data-key = ''>+</button>
-                <button class = 'key' data-key = ''>.</button>
-                <button class = 'key' data-key = '48'>0</button>
-                <button class = 'key' data-key = '' id = 'equalsBtn'>=</button>
+                <button class = 'key' data-key = 'clear' id = "clearBtn">Clear</button>
+                <button class = 'key' data-key = 'Backspace' id = "backspaceBtn">Del</button>
+                <button class = 'key' data-key = '/'>÷</button>
+                <button class = 'key' data-key = '7'>7</button>
+                <button class = 'key' data-key = '8'>8</button>
+                <button class = 'key' data-key = '9'>9</button>
+                <button class = 'key' data-key = '*'>×</button>
+                <button class = 'key' data-key = '6'>6</button>
+                <button class = 'key' data-key = '5'>5</button>
+                <button class = 'key' data-key = '4'>4</button>
+                <button class = 'key' data-key = '-'>-</button>
+                <button class = 'key' data-key = '3'>3</button>
+                <button class = 'key' data-key = '2'>2</button>
+                <button class = 'key' data-key = '1'>1</button>
+                <button class = 'key' data-key = '+'>+</button>
+                <button class = 'key' data-key = '.'>.</button>
+                <button class = 'key' data-key = '0'>0</button>
+                <button class = 'key' data-key = '=' id = 'equalsBtn'>=</button>
             </div>
         </div>
     </main>
 </body>
 <script>
-    let currentDisplay = document.querySelector('.current.Display')
+    let currentDisplay = document.querySelector('.current.Display');
 
     var isNumber = function isNumber(value) {
             return typeof value === 'number' && isFinite(value);
-        }
+    };
 
+    function animateButton(e) {
+        const btn = document.querySelector(`.key[data-key="${e.key}"]`);
+        btn.classList.add('active');
+    };
+
+    function printNumber(e) {
+        currentDisplay.append(e.key);
+        animateButton(e);
+    };
 
     window.addEventListener("keydown", function(e) {
-            if (e.keyCode >= 48 && e.keyCode <= 57) {
-                if (isNumber(parseInt(e.key))){
-                    currentDisplay.append(e.key);
-                    const btn = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-                    btn.classList.add('active');
-                }
-            }
-        });
+        if (e.key >= 0 && e.key <= 9) {
+            printNumber(e);
+        }
+    });
+    
     window.addEventListener("keyup", function(e) {
-            if (e.keyCode >= 48 && e.keyCode <= 57) {
-                const btn = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-                btn.classList.remove('active');
-            }
-        });
+        if (e.key >= 0 && e.key <= 9) {
+            const btn = document.querySelector(`.key[data-key="${e.key}"]`);
+            btn.classList.remove('active');
+        }
+    });
 </script>
 </html>
