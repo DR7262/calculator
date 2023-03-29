@@ -49,8 +49,8 @@
     };
 
     function animateButton(e) {
-        const btn = document.querySelector(`.key[data-key="${e.key}"]`);
-        btn.classList.add('active');
+        let btn = document.querySelector(`.key[data-key="${e.key}"]`)
+        btn ? btn.classList.add('active') : '';
     };
 
     function clearScreen() {
@@ -69,14 +69,14 @@
     })
         
     window.addEventListener("keydown", function(e) {
-        if (e.key >= 0 && e.key <= 9) printNumber(e.key), animateButton(e);
+        if (e.key >= 0 && e.key <= 9) printNumber(e.key);
+        if (e.key == '.') printNumber(e.key);
+        animateButton(e);
     });
 
     window.addEventListener("keyup", function(e) {
-        if (e.key >= 0 && e.key <= 9) {
-            const btn = document.querySelector(`.key[data-key="${e.key}"]`);
-            btn.classList.remove('active');
-        }
+        const btn = document.querySelector(`.key[data-key="${e.key}"]`);
+        btn ? btn.classList.remove('active') : '';
     });
 </script>
 </html>
