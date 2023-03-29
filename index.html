@@ -16,7 +16,7 @@
                 <div class = 'current Display'>1</div>
             </div>
             <div id = 'buttons'>
-                <button class = 'key' data-key = 'clear' id = "clearBtn">Clear</button>
+                <button onclick = clearScreen() class = 'key' data-key = 'clear' id = "clearBtn">Clear</button>
                 <button class = 'key' data-key = 'Backspace' id = "backspaceBtn">Del</button>
                 <button class = 'key' data-key = '/'>÷</button>
                 <button class = 'key' data-key = '7'>7</button>
@@ -40,6 +40,7 @@
 </body>
 <script>
     let currentDisplay = document.querySelector('.current.Display');
+    let pastDisplay = document.querySelector('.past.Display');
 
     var isNumber = function isNumber(value) {
             return typeof value === 'number' && isFinite(value);
@@ -48,6 +49,11 @@
     function animateButton(e) {
         const btn = document.querySelector(`.key[data-key="${e.key}"]`);
         btn.classList.add('active');
+    };
+
+    function clearScreen() {
+        currentDisplay.innerHTML = '';
+        pastDisplay.innerHTML = '0';
     };
 
     function printNumber(e) {
@@ -60,7 +66,7 @@
             printNumber(e);
         }
     });
-    
+
     window.addEventListener("keyup", function(e) {
         if (e.key >= 0 && e.key <= 9) {
             const btn = document.querySelector(`.key[data-key="${e.key}"]`);
