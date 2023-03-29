@@ -42,6 +42,8 @@
     let currentDisplay = document.querySelector('.current.Display');
     let pastDisplay = document.querySelector('.past.Display');
 
+    let buttons = document.querySelectorAll('button');
+
     var isNumber = function isNumber(value) {
             return typeof value === 'number' && isFinite(value);
     };
@@ -56,15 +58,18 @@
         pastDisplay.innerHTML = '0';
     };
 
-    function printNumber(e) {
-        currentDisplay.append(e.key);
-        animateButton(e);
+    function printNumber(key) {
+        currentDisplay.append(key);
     };
 
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (e.currentTarget.dataset.key >= 0 && e.currentTarget.dataset.key <= 9) printNumber(e.currentTarget.dataset.key);
+        });
+    })
+        
     window.addEventListener("keydown", function(e) {
-        if (e.key >= 0 && e.key <= 9) {
-            printNumber(e);
-        }
+        if (e.key >= 0 && e.key <= 9) printNumber(e.key), animateButton(e);
     });
 
     window.addEventListener("keyup", function(e) {
