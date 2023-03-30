@@ -51,17 +51,18 @@
     let currentOperator = '';
 
     function evaluateOperation(operator) {
-        if (operator == '+') return (operand1 + operand2);
-        if (operator == '-') return (operand1 - operand2);
-        if (operator == '*') return (operand1 * operand2);
-        if (operator == '/') return (operand1 / operand2);
+        if (operator == '+') return (+operand2 + +operand1);
+        if (operator == '-') return (+operand2 - +operand1);
+        if (operator == '*') return (+operand2 * +operand1);
+        if (operator == '/') return (+operand2 / +operand1);
     }
 
     var symbols = {
         '-':' - ',
         '+':' + ',
         '*':' × ',
-        '/':' ÷ '
+        '/':' ÷ ',
+        '=':' = '
     };
 
     var isNumber = function isNumber(value) {
@@ -110,11 +111,29 @@
         pastDisplay.append(symbols[key]);
     }
 
+    function printResult() {
+        clearScreen()
+        let result = evaluateOperation(currentOperator);
+        pastDisplay.innerHTML = operand2 + symbols[currentOperator] + operand1 + symbols['='];
+        currentDisplay.innerHTML = result;
+        operand2 = result;
+    }
+
     function handleInput(key) {
         if (key >= 0 && key <= 9) printKey(key);
         if (key == '.') printPeriod(key);
         if (key == 'Backspace') backspace();
-        if (key == '-' || key == '+' || key == '*' || key == '/') printSymbol(key);
+        if (key == '-' || key == '+' || key == '*' || key == '/') {
+            operand2 = operand1;
+            operand1 = '';
+            currentOperator = key;
+            clearScreen();
+            pastDisplay.append(operand2);
+            printSymbol(key);
+        }
+        if (key == '=' && isNumber(parseInt(operand1))) {
+            printResult();
+        }
     };
 
     buttons.forEach(button => {
