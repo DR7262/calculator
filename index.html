@@ -44,6 +44,8 @@
 
     let buttons = document.querySelectorAll('button');
 
+    let periodStatus = false;
+
     var isNumber = function isNumber(value) {
             return typeof value === 'number' && isFinite(value);
     };
@@ -56,6 +58,7 @@
     function clearScreen() {
         currentDisplay.innerHTML = '';
         pastDisplay.innerHTML = '';
+        periodStatus = false;
     };
 
     function backspace() {
@@ -66,9 +69,16 @@
         currentDisplay.append(key);
     };
 
+    function printPeriod(key) {
+        if (periodStatus == false) {
+            periodStatus = true;
+            printKey(key);
+        };
+    };
+
     function handleInput(key) {
         if (key >= 0 && key <= 9) printKey(key);
-        if (key == '.') printKey(key);
+        if (key == '.') printPeriod(key);
         if (key == 'Backspace') backspace();
         if (key == '-' || key == '+' || key == '*' || key == '/') printKey(key);
     };
