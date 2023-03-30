@@ -73,6 +73,8 @@ div {
 .past.Display {
     min-height: 48.8px;
     box-sizing: border-box;
+    padding-bottom: 5px;
+    font-size: 1.2em;
 }
 
 #clearBtn {

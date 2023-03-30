@@ -16,7 +16,7 @@
                 <div class = 'current Display'></div>
             </div>
             <div id = 'buttons'>
-                <button onclick = clearScreen() class = 'key' data-key = 'clear' id = "clearBtn">Clear</button>
+                <button onclick = resetCalc() class = 'key' data-key = 'clear' id = "clearBtn">Clear</button>
                 <button class = 'key' data-key = 'Backspace' id = "backspaceBtn">Del</button>
                 <button class = 'key' data-key = '/'>÷</button>
                 <button class = 'key' data-key = '7'>7</button>
@@ -46,6 +46,17 @@
 
     let periodStatus = false;
 
+    let operand1 = '';
+    let operand2 = '';
+    let currentOperator = '';
+
+    function evaluateOperation(operator) {
+        if (operator == '+') return (operand1 + operand2);
+        if (operator == '-') return (operand1 - operand2);
+        if (operator == '*') return (operand1 * operand2);
+        if (operator == '/') return (operand1 / operand2);
+    }
+
     var symbols = {
         '-':' - ',
         '+':' + ',
@@ -65,8 +76,19 @@
     function clearScreen() {
         currentDisplay.innerHTML = '';
         pastDisplay.innerHTML = '';
-        periodStatus = false;
     };
+
+    function clearCurrentOperations() {
+        periodStatus = false;
+        operand1 = '';
+        operand2 = '';
+        currentOperator = '';
+    }
+
+    function resetCalc() {
+        clearScreen();
+        clearCurrentOperations();
+    }
 
     function backspace() {
         currentDisplay.innerHTML = currentDisplay.innerHTML.slice(0, -1);
@@ -74,6 +96,7 @@
 
     function printKey(key) {
         currentDisplay.append(key);
+        operand1 = operand1.concat('', key);
     };
 
     function printPeriod(key) {
@@ -84,7 +107,7 @@
     };
 
     function printSymbol(key) {
-        printKey(symbols[key]);
+        pastDisplay.append(symbols[key]);
     }
 
     function handleInput(key) {
