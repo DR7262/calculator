@@ -46,6 +46,13 @@
 
     let periodStatus = false;
 
+    var symbols = {
+        '-':' - ',
+        '+':' + ',
+        '*':' × ',
+        '/':' ÷ '
+    };
+
     var isNumber = function isNumber(value) {
             return typeof value === 'number' && isFinite(value);
     };
@@ -76,11 +83,15 @@
         };
     };
 
+    function printSymbol(key) {
+        printKey(symbols[key]);
+    }
+
     function handleInput(key) {
         if (key >= 0 && key <= 9) printKey(key);
         if (key == '.') printPeriod(key);
         if (key == 'Backspace') backspace();
-        if (key == '-' || key == '+' || key == '*' || key == '/') printKey(key);
+        if (key == '-' || key == '+' || key == '*' || key == '/') printSymbol(key);
     };
 
     buttons.forEach(button => {
