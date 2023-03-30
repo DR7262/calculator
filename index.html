@@ -62,14 +62,15 @@
         currentDisplay.innerHTML = currentDisplay.innerHTML.slice(0, -1);
     };
 
-    function printNumber(key) {
+    function printKey(key) {
         currentDisplay.append(key);
     };
 
     function handleInput(key) {
-        if (key >= 0 && key <= 9) printNumber(key);
-        if (key == '.') printNumber(key);
+        if (key >= 0 && key <= 9) printKey(key);
+        if (key == '.') printKey(key);
         if (key == 'Backspace') backspace();
+        if (key == '-' || key == '+' || key == '*' || key == '/') printKey(key);
     };
 
     buttons.forEach(button => {
