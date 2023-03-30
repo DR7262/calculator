@@ -55,22 +55,31 @@
 
     function clearScreen() {
         currentDisplay.innerHTML = '';
-        pastDisplay.innerHTML = '0';
+        pastDisplay.innerHTML = '';
+    };
+
+    function backspace() {
+        currentDisplay.innerHTML = currentDisplay.innerHTML.slice(0, -1);
     };
 
     function printNumber(key) {
         currentDisplay.append(key);
     };
 
+    function handleInput(key) {
+        if (key >= 0 && key <= 9) printNumber(key);
+        if (key == '.') printNumber(key);
+        if (key == 'Backspace') backspace();
+    };
+
     buttons.forEach(button => {
         button.addEventListener('click', function(e) {
-            if (e.currentTarget.dataset.key >= 0 && e.currentTarget.dataset.key <= 9) printNumber(e.currentTarget.dataset.key);
+            handleInput(e.currentTarget.dataset.key)
         });
     })
         
     window.addEventListener("keydown", function(e) {
-        if (e.key >= 0 && e.key <= 9) printNumber(e.key);
-        if (e.key == '.') printNumber(e.key);
+        handleInput(e.key)
         animateButton(e);
     });
 
