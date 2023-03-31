@@ -134,7 +134,7 @@
             }
         }
         if (key == '.') printPeriod(key);
-        if (key == 'Backspace') backspace();
+        if (key == 'Backspace' && currentResult == '') backspace();
         if (key == '-' || key == '+' || key == '*' || key == '/') {
             if (isNumber(parseInt(operand1)) && isNumber(parseInt(operand2))) {
                 if (currentResult == '') {
