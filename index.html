@@ -78,6 +78,7 @@
     function clearScreen() {
         currentDisplay.innerHTML = '';
         pastDisplay.innerHTML = '';
+        periodStatus = false;
     };
 
     function clearCurrentOperations() {
@@ -133,7 +134,7 @@
                 printKey(key);
             }
         }
-        if (key == '.') printPeriod(key);
+        if (key == '.' && currentResult == '') printPeriod(key);
         if (key == 'Backspace' && currentResult == '') backspace();
         if (key == '-' || key == '+' || key == '*' || key == '/') {
             if (isNumber(parseInt(operand1)) && isNumber(parseInt(operand2))) {
