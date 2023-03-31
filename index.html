@@ -49,6 +49,7 @@
     let operand1 = '';
     let operand2 = '';
     let currentOperator = '';
+    let currentResult = ''
 
     function evaluateOperation(operator) {
         if (operator == '+') return (+operand2 + +operand1);
@@ -84,6 +85,7 @@
         operand1 = '';
         operand2 = '';
         currentOperator = '';
+        currentResult = '';
     }
 
     function resetCalc() {
@@ -118,19 +120,43 @@
         pastDisplay.innerHTML = operand2 + symbols[currentOperator] + operand1 + symbols['='];
         currentDisplay.innerHTML = result;
         operand2 = result;
+        currentResult = result;
     }
 
     function handleInput(key) {
-        if (key >= 0 && key <= 9) printKey(key);
+        if (key >= 0 && key <= 9) {
+            if (isNumber(parseInt(currentResult)) == false) {
+                printKey(key);
+            }
+            else {
+                resetCalc();
+                printKey(key);
+            }
+        }
         if (key == '.') printPeriod(key);
         if (key == 'Backspace') backspace();
         if (key == '-' || key == '+' || key == '*' || key == '/') {
-            operand2 = operand1;
-            operand1 = '';
-            currentOperator = key;
-            clearScreen();
-            pastDisplay.append(operand2);
-            printSymbol(key);
+            if (isNumber(parseInt(operand1)) && isNumber(parseInt(operand2))) {
+                if (currentResult == '') {
+                    currentResult = evaluateOperation(currentOperator);
+                    operand2 = currentResult;
+                }
+                operand1 = '';
+                currentOperator = key;
+                clearScreen();
+                pastDisplay.append(operand2);
+                printSymbol(key);
+                currentResult = '';
+            }
+            else {
+                if (isNumber(parseInt(operand2)) == false) operand2 = operand1;
+                operand1 = '';
+                currentOperator = key;
+                clearScreen();
+                pastDisplay.append(operand2);
+                printSymbol(key);
+                currentResult = '';
+            }
         }
         if (key == '=' && isNumber(parseInt(operand1))) {
             printResult();
