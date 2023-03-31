@@ -52,10 +52,10 @@
     let currentResult = ''
 
     function evaluateOperation(operator) {
-        if (operator == '+') return (+operand2 + +operand1);
-        if (operator == '-') return (+operand2 - +operand1);
-        if (operator == '*') return (+operand2 * +operand1);
-        if (operator == '/') return (+operand2 / +operand1);
+        if (operator == '+') return Math.round((+operand2 + +operand1) * 100) / 100;
+        if (operator == '-') return Math.round((+operand2 - +operand1) * 100) / 100;
+        if (operator == '*') return Math.round((+operand2 * +operand1) * 100) / 100;
+        if (operator == '/') return Math.round((+operand2 / +operand1) * 100) / 100;
     }
 
     var symbols = {
