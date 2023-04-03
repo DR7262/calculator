@@ -159,7 +159,7 @@
                 currentResult = '';
             }
         }
-        if (key == '=' && isNumber(parseInt(operand1))) {
+        if (key == '=' && isNumber(+operand1)) {
             if (operand2 != '') printResult();
         }
     };
